@@ -1,0 +1,24 @@
+import cv2
+import numpy as np
+
+# Load the image
+img = cv2.imread('example.jpg', 0)
+
+# Threshold the image to create a binary image
+thresh = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)[1]
+
+# Find the contours in the binary image
+contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+# Calculate the moments of the contours
+moments = cv2.moments(contours[0])
+
+# Calculate the x and y coordinates of the center of mass
+x_com = int(moments['m10'] / moments['m00'])
+y_com = int(moments['m01'] / moments['m00'])
+
+# Display the image with the center of mass
+cv2.circle(img, (x_com, y_com), 5, (0, 0, 255), -1)
+cv2.imshow('Image', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
