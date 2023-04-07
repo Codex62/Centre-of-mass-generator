@@ -1,0 +1,28 @@
+# Get the number of particles
+num_particles = int(input("Enter the number of particles: "))
+
+# Initialize variables to store the total mass and position of the center of mass
+total_mass = 0
+com_x = 0
+com_y = 0
+
+# Loop through each particle
+for i in range(num_particles):
+    # Get the mass and position of the particle from the user
+    mass = float(input("Enter the mass of particle {}: ".format(i+1)))
+    x = float(input("Enter the x-coordinate of particle {}: ".format(i+1)))
+    y = float(input("Enter the y-coordinate of particle {}: ".format(i+1)))
+
+    # Add the mass of the particle to the total mass
+    total_mass += mass
+
+    # Add the position of the particle weighted by its mass to the position of the center of mass
+    com_x += x * mass
+    com_y += y * mass
+
+# Calculate the x and y coordinates of the center of mass
+com_x /= total_mass
+com_y /= total_mass
+
+# Print the center of mass
+print("The center of mass is at ({}, {})".format(com_x, com_y))
